@@ -19,9 +19,7 @@
                         .domain([1,30])
                         .range([10,50]);
   
-  var colorScale = d3.scale.linear()
-                           .domain([1,100])
-                           .range(["#ff4d4d", "#000000"]);
+  var colorScale = d3.scale.category20();
   
   d3.select("div#data")
     .selectAll("span")
