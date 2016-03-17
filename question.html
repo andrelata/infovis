@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  
+  <div id="data"></div>
+
+  <svg>
+    
+    <g>
+
+      <text x="10" y="15">Agree</text>
+      
+      <rect x="80" y="0" height="20" width="25"
+            style="stroke: #006600; fill: #006600"/>
+      
+    </g>
+    <g>
+      <text x="10" y="40">Neutral</text>
+      <rect x="80" y="25" height="20" width="25"
+            style="stroke: #C0C0C0; fill: #C0C0C0"/>
+    </g>
+    <g>
+      <text x="10" y="65">Disagree</text>
+      <rect x="80" y="50" height="20" width="25"
+            style="stroke: #FF0000; fill: #FF0000"/>
+    </g>
+
+  </svg>
+
+</body>
+
+<script>
+
+var data = [{"question":"I felt creative", "agree":88, "disagree":4, "neutral":8 },
+                   {"question":"I felt an emotional reaction", "agree":66, "disagree":12, "neutral":22 },
+                   {"question":"I learned something new about the text", "agree":63, "disagree":13, "neutral":24 },
+                   {"question":"It confirmed my understanding of the text", "agree":57, "disagree":10, "neutral":33 },
+                   {"question":"It jogged my memory", "agree":50, "disagree":15, "neutral":35 },
+                   {"question":"The Wordle confused me", "agree":5, "disagree":86, "neutral":9 }, ];
+
+var svgContainer = d3.select("div#data")
+                    .append("svg")
+                    .attr("width",1000)
+                    .attr("height",200);                 
+
+var svgData= svgContainer.selectAll("text")
+                .data(data)
+                .enter();
+
+var svgText = svgData.append("text")
+                .text(function(d,i){ return d.question;})
+                .attr("x", 1)
+                .attr("y", function(d,i){return 15+i*20;});
+
+
+//Draw the Rectangle
+var rectAgree = svgData.append("rect")
+                        .attr("x", function(d,i){return 300;})
+                        .attr("y", function(d,i){return i*20;})
+                        .attr("width", function(d,i){return d.agree;})
+                        .attr("height", 20)
+                        .attr("stroke", "#006600")
+                        .attr("fill", "#006600");
+
+var rectNeutral = svgData.append("rect")
+                            .attr("x", function(d,i){return d.agree + 300;})
+                            .attr("y", function(d,i){return i*20;})
+                            .attr("width", function(d,i){return d.neutral;})
+                            .attr("height", 20)
+                            .attr("stroke", "#C0C0C0")
+                            .attr("fill", "#C0C0C0");
+
+var rectDisagree = svgData.append("rect")
+                            .attr("x", function(d,i){return d.agree + d.neutral + 300 ;})
+                            .attr("y", function(d,i){return i*20;})
+                            .attr("width", function(d,i){return d.disagree;})
+                            .attr("height", 20)
+                            .attr("stroke", "#FF0000")
+                            .attr("fill", "#FF0000");
+
+
+
+</script>
+
+</html>
