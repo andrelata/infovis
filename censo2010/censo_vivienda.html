@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="build/nv.d3.js"></script>
+    <script src="lib/stream_layers.js"></script>
+
+    <style>
+        text {
+            font: 12px sans-serif;
+        }
+        svg {
+            display: block;
+            float: left;
+            height: 450px !important;
+            width: 450px !important;
+        }
+        html, body {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class='with-3d-shadow with-transitions'>
+<h1>Datos generales vivienda</h1>
+
+<div>
+    <h2>Municipios con cierta cantidad de vivienda</h2>
+    <svg id="mun_cant" class="mypiechart"></svg>
+</div>
+
+<div>
+    <h2>Tipos de viviendas particular</h2>
+    <svg id="viv" class="mypiechart"></svg>
+</div>
+
+<script>
+
+    var data_mun = [
+        {rango_vivienda: ">50000", cant_municipio: 66},
+        {rango_vivienda: "10000-50000", cant_municipio: 145},
+        {rango_vivienda: "5000-10000", cant_municipio: 152},
+        {rango_vivienda: "1000-5000", cant_municipio: 673},
+        {rango_vivienda: "500-1000", cant_municipio: 363},
+        {rango_vivienda: "0-500", cant_municipio: 1060}
+    ];
+
+    var data_viv = [
+        {tipo_viv_part: "Casa", cant: 10620866},
+        {tipo_viv_part: "Pieza en inquilinato", cant: 67765},
+        {tipo_viv_part: "Casilla", cant: 235081},
+        {tipo_viv_part: "Vivienda móvil", cant: 4682},
+        {tipo_viv_part: "Departamento", cant: 2615916},
+        {tipo_viv_part: "Pieza en hotel familiar o pensión", cant: 22802},
+        {tipo_viv_part: "Persona/s viviendo en la calle", cant: 2346},
+        {tipo_viv_part: "Local no construido para habitación", cant: 18369},
+        {tipo_viv_part: "Rancho", cant: 226644}
+    ];
+
+    var height = 450;
+    var width = 450;
+
+    nv.addGraph(function() {
+        var chart = nv.models.pieChart()
+            .x(function(d) { return d.rango_vivienda })
+            .y(function(d) { return d.cant_municipio })
+            .labelType("percent")
+            .width(width)
+            .height(height);
+
+        d3.select("#mun_cant")
+            .datum(data_mun)
+            .transition().duration(1200)
+            .attr('width', width)
+            .attr('height', height)
+            .call(chart);
+
+        return chart;
+    });
+
+    nv.addGraph(function() {
+        var chart = nv.models.pieChart()
+            .x(function(d) { return d.tipo_viv_part })
+            .y(function(d) { return d.cant })
+            .labelType("percent")
+            .width(width)
+            .height(height);
+
+        d3.select("#viv")
+            .datum(data_viv)
+            .transition().duration(1200)
+            .attr('width', width)
+            .attr('height', height)
+            .call(chart);
+
+        return chart;
+    });
+
+    </script>
+</body>
+</html>
