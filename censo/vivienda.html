@@ -20,12 +20,6 @@
             height: 100%;
             width: 100%;
         }
-       	.nv-controlsWrap {
-	  	display: none;
-        }
-	.nv-legendWrap {
-		display: none;
-	}
     </style>
 </head>
 <body>
@@ -116,6 +110,8 @@
             .duration(250)
             .margin({left: 150, right: 100});
 
+	chart.showLegend(false);
+	chart.showControls(false);
 
         chart.yAxis.tickFormat(d3.format(',.2f'));
 
