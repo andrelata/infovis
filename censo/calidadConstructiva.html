@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="build/nv.d3.js"></script>
+    <script src="lib/stream_layers.js"></script>
+
+    <style>
+        text {
+            font: 12px sans-serif;
+        }
+        svg {
+            display: block;
+        }
+        html, body, #chart1, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chart1" class='with-3d-shadow with-transitions'>
+    <svg></svg>
+</div>
+
+<script>
+
+	var data_calidad_const = [
+		{
+			key: 'NN',
+			values: [
+			{
+                    "municipio" : "Cordoba" ,
+                    "cantidad" : 89431
+                } ,
+                {
+                    "municipio" : "La Matanza" ,
+                    "cantidad" : 42182
+                } ,
+                {
+                    "municipio" : "Rosario" ,
+                    "cantidad" : 67569
+                }
+			]
+		},
+		{
+			key: 'Basica',
+			values: [
+			{
+                    "municipio" : "Cordoba" ,
+                    "cantidad" : 152543
+                } ,
+                {
+                    "municipio" : "La Matanza" ,
+                    "cantidad" : 100252
+                } ,
+                {
+                    "municipio" : "Rosario" ,
+                    "cantidad" : 91940
+                }
+			]
+		},	
+		{
+			key: 'Insuficiente',
+			values: [
+			{
+                    "municipio" : "Cordoba" ,
+                    "cantidad" : 24191
+                } ,
+                {
+                    "municipio" : "La Matanza" ,
+                    "cantidad" : 86105
+                } ,
+                {
+                    "municipio" : "Rosario" ,
+                    "cantidad" : 21528
+                }
+			]
+		},
+		{
+			key: 'Satisfactoria',
+			values: [
+			{
+                    "municipio" : "Cordoba" ,
+                    "cantidad" : 206860
+                } ,
+                {
+                    "municipio" : "La Matanza" ,
+                    "cantidad" : 218981
+                } ,
+                {
+                    "municipio" : "Rosario" ,
+                    "cantidad" : 176510
+                }
+			]
+		}
+
+	];
+
+	var chart;
+    	nv.addGraph(function() {
+        chart = nv.models.multiBarHorizontalChart()
+            .x(function(d) { return d.municipio})
+            .y(function(d) { return d.cantidad})
+            .barColor(d3.scale.category20().range())
+            .duration(250)
+		.margin({left: 150, right: 100})
+            .stacked(true);
+
+	  chart.showLegend(true)
+
+        chart.yAxis.tickFormat(d3.format(',.2f'));
+
+        chart.yAxis.axisLabel('Cantidad de viviendas');
+        chart.xAxis.axisLabel('Municipios').axisLabelDistance(70);
+
+
+        d3.select('#chart1 svg')
+            .datum(data_calidad_const)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+
+</script>
+
+</body>
+</html>
