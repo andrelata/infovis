@@ -1,0 +1,82 @@
+[
+  {
+    "ID - Municipio":140140077,
+    "Nombre":"Cordoba",
+    "NN":89431,
+    "Básica":152543,
+    "Insuficiente":24191,
+    "Satisfactoria":206860
+  },
+  {
+    "ID - Municipio":64270427,
+    "Nombre":"La Matanza",
+    "NN":42182,
+    "Básica":100252,
+    "Insuficiente":86105,
+    "Satisfactoria":218981
+  },
+  {
+    "ID - Municipio":820840210,
+    "Nombre":"Rosario",
+    "NN":67569,
+    "Básica":91940,
+    "Insuficiente":21528,
+    "Satisfactoria":176510
+  },
+  {
+    "ID - Municipio":63570357,
+    "Nombre":"General Pueyrredon",
+    "NN":106983,
+    "Básica":33094,
+    "Insuficiente":12783,
+    "Satisfactoria":155162
+  },
+  {
+    "ID - Municipio":64410441,
+    "Nombre":"La Plata",
+    "NN":49874,
+    "Básica":30015,
+    "Insuficiente":21448,
+    "Satisfactoria":158425
+  },
+  {
+    "ID - Municipio":64900490,
+    "Nombre":"Lomas de Zamora",
+    "NN":21020,
+    "Básica":35675,
+    "Insuficiente":28505,
+    "Satisfactoria":103124
+  },
+  {
+    "ID - Municipio":66580658,
+    "Nombre":"Quilmes",
+    "NN":18623,
+    "Básica":37335,
+    "Insuficiente":24790,
+    "Satisfactoria":101592
+  },
+  {
+    "ID - Municipio":64340434,
+    "Nombre":"Lanus",
+    "NN":20839,
+    "Básica":28379,
+    "Insuficiente":11095,
+    "Satisfactoria":97658
+  },
+  {
+    "ID - Municipio":900840014,
+    "Nombre":"San Miguel de Tucumán",
+    "NN":24145,
+    "Básica":34636,
+    "Insuficiente":18671,
+    "Satisfactoria":80101
+  },
+  {
+    "ID - Municipio":60280028,
+    "Nombre":"Almirante Brown",
+    "NN":13682,
+    "Básica":33650,
+    "Insuficiente":29199,
+    "Satisfactoria":79765
+  }
+]
