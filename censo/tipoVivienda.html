@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="build/nv.d3.js"></script>
+    <script src="lib/stream_layers.js"></script>
+
+    <style>
+        text {
+            font: 12px sans-serif;
+        }
+        svg {
+            display: block;
+        }
+        html, body, #chart1, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chart1" class='with-3d-shadow with-transitions'>
+    <svg></svg>
+</div>
+
+<script>
+
+    var data_tipo_viv = [
+		{
+			key: 'Casa',
+			values: [
+			{
+                    "municipio" : "Cordoba" ,
+                    "cantidad" : 332555
+                } ,
+                {
+                    "municipio" : "La Matanza" ,
+                    "cantidad" : 359347
+                } ,
+                {
+                    "municipio" : "Rosario" ,
+                    "cantidad" : 219272
+                }
+			]
+		},	
+		{
+			key: 'Casilla',
+			values: [
+			{
+                    "municipio" : "Cordoba" ,
+                    "cantidad" : 1424
+                } ,
+                {
+                    "municipio" : "La Matanza" ,
+                    "cantidad" : 14658
+                } ,
+                {
+                    "municipio" : "Rosario" ,
+                    "cantidad" : 4323
+                }
+			]
+		},
+		{
+			key: 'Departamento',
+			values: [
+			{
+                    "municipio" : "Cordoba" ,
+                    "cantidad" : 134162
+                } ,
+                {
+                    "municipio" : "La Matanza" ,
+                    "cantidad" : 64903
+                } ,
+                {
+                    "municipio" : "Rosario" ,
+                    "cantidad" : 129210
+                }
+			]
+		}
+	];
+
+
+    var chart;
+    nv.addGraph(function() {
+        chart = nv.models.multiBarHorizontalChart()
+            .x(function(d) { return d.municipio})
+            .y(function(d) { return d.cantidad})
+            .barColor(d3.scale.category20().range())
+            .duration(250)
+		.margin({left: 150, right: 100})
+            .stacked(true);
+
+        chart.yAxis.tickFormat(d3.format(',.2f'));
+
+        chart.yAxis.axisLabel('Municipios');
+        chart.xAxis.axisLabel('Cantidad de viviendas').axisLabelDistance(70);
+
+
+        d3.select('#chart1 svg')
+            .datum(data_tipo_viv)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+</script>
+
+</body>
+</html>
