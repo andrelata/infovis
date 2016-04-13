@@ -48,6 +48,7 @@
                 <a class="navbar-brand" href="../index.html">Infovis</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
+            	<li><a href="https://github.com/nvd3-community/nvd3">Nvd3</a>
                 <li><a href="#"><i class="fa fa-user fa-fw"></i> Andrea Lata</a>
                 </li>
             </ul>
@@ -98,7 +99,7 @@
             <div class="row">
                 <div id="chart2" class='with-3d-shadow with-transitions'>
                  	<h2>Tipos de vivienda por municipio</h2>
-                  	<svg style="height: 600px;"></svg>
+                  	<svg style="height: 700px;"></svg>
                 </div>
             </div>
             <!-- /.row -->
@@ -254,7 +255,7 @@
 	            .duration(250)
 			.margin({left: 150, right: 100})
 	            .stacked(true);
-		chart.height(550);
+		chart.height(650);
 	        chart.yAxis.tickFormat(d3.format(',.2f'));
 	        chart.yAxis.axisLabel('Cantidad de viviendas');
 	        chart.xAxis.axisLabel('Municipios').axisLabelDistance(70);
