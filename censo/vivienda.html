@@ -115,8 +115,8 @@
 
         chart.yAxis.tickFormat(d3.format(',.2f'));
 
-        chart.yAxis.axisLabel('Municipios');
-        chart.xAxis.axisLabel('Cantidad de viviendas').axisLabelDistance(70);
+        chart.yAxis.axisLabel('Cantidad de viviendas');
+        chart.xAxis.axisLabel('Municipios').axisLabelDistance(70);
 
         d3.select('#chart1 svg')
             .datum(data_cant_vivienda)
