@@ -90,6 +90,10 @@
             </div>
             <!-- /.row -->
             <div class="row">
+	    	<h2>Municipios con cierta cantidad de viviendas</h2>
+		<svg id="mun_cant" class="mypiechart"></svg>
+            </div>
+            <div class="row">
                 <div id="chart1" class='with-3d-shadow with-transitions'>
                  	<h2>Top 10 de municipios por cantidad de viviendas</h2>
                   	<svg style="height: 500px;"></svg>
@@ -265,6 +269,37 @@
 	        nv.utils.windowResize(chart.update);
 	        return chart;
 	    });
+    </script>
+    
+    <!-- Municipios con cierta cantidad de viviendas -->
+    <script>
+    var data_mun = [
+        {rango_vivienda: ">50000", cant_municipio: 66},
+        {rango_vivienda: "10000-50000", cant_municipio: 145},
+        {rango_vivienda: "5000-10000", cant_municipio: 152},
+        {rango_vivienda: "1000-5000", cant_municipio: 673},
+        {rango_vivienda: "500-1000", cant_municipio: 363},
+        {rango_vivienda: "0-500", cant_municipio: 1060}
+    ];
+    
+    var height = 500;
+    var width = 500;
+    nv.addGraph(function() {
+        var chart = nv.models.pieChart()
+            .x(function(d) { return d.rango_vivienda })
+            .y(function(d) { return d.cant_municipio })
+            .labelType("percent")
+            .width(width)
+            .height(height);
+        d3.select("#mun_cant")
+            .datum(data_mun)
+            .transition().duration(1200)
+            .attr('width', width)
+            .attr('height', height)
+            .call(chart);
+        return chart;
+    });
+
     </script>
 
 </body>
