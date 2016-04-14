@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+
+</body>
+
+<script>
+  var data_circles = [
+     { "x_axis": 50, "y_axis": 120, "radius": 20, "color" : "green" },
+     { "x_axis": 100, "y_axis": 70, "radius": 20, "color" : "blue"},
+     { "x_axis": 140, "y_axis": 170, "radius": 20, "color" : "grey"},
+     { "x_axis": 350, "y_axis": 140, "radius": 20, "color" : "purple"},
+     { "x_axis": 250, "y_axis": 200, "radius": 20, "color" : "red"}];
+   
+   var svgContainer = d3.select("body")
+                        .append("svg")
+                        .attr("width", 500)
+                        .attr("height", 500);
+          
+   
+  var circles = svgContainer.selectAll("circle")
+                            .data(data_circles)
+                            .enter()
+                            .append("circle");
+  
+  var circleAttributes = circles
+                         .attr("cx", function (d) { return d.x_axis; })
+                         .attr("cy", function (d) { return d.y_axis; })
+                         .attr("r", function (d) { return d.radius; })
+                         .style("fill", function(d) { return d.color; });
+
+</script>
+
+
+</html>
