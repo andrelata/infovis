@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="build/nv.d3.js"></script>
+
+    <style>
+        text {
+            font: 12px sans-serif;
+        }
+        svg {
+            display: block;
+        }
+        html, body, #test1, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="test1" class='with-3d-shadow with-transitions'>
+    <svg></svg>
+</div>
+
+<script>
+
+    // register our custom symbols to nvd3
+    // make sure your path is valid given any size because size scales if the chart scales.
+  /*  nv.utils.symbolMap.set('thin-x', function(size) {
+        size = Math.sqrt(size);
+        return 'M' + (-size/2) + ',' + (-size/2) +
+                'l' + size + ',' + size +
+                'm0,' + -(size) +
+                'l' + (-size) + ',' + size;
+    });*/
+
+    // create the chart
+    var chart;
+    var month = 12;
+    var years = 4;
+
+    nv.addGraph(function() {
+        chart = nv.models.scatterChart()
+            .showDistX(true)
+            .showDistY(true)
+            .useVoronoi(true)
+            .color(d3.scale.category10().range())
+            .duration(300)
+        ;
+        chart.dispatch.on('renderEnd', function(){
+            console.log('render complete');
+        });
+
+        chart.xAxis.tickFormat(d3.format('.02f'));
+        chart.yAxis.tickFormat(d3.format('.02f'));
+
+        d3.select('#test1 svg')
+            .datum(randomData(years,month))
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+
+
+    function randomData(groups, points) { //# groups,# points per group
+        // smiley and thin-x are our custom symbols!
+        var month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        /*var month = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
+                    'Junio', 'Julio', 'Agosto', 'Septiembre',
+                    'Octubre', 'Noviembre', 'Diciembre'];*/
+        var year2016 = [0,0,0,1,0,0,0,0,0,0,0,0];
+        var year2015 = [0,0,2,1,5,2,2,2,4,2,3,0];
+        var year2013 = [0,0,0,7,7,12,3,3,3,3,0,0];
+        var year2012 = [0,0,7,8,8,9,3,2,14,3,0,0];
+        var s = 'circle';
+
+        var year = [];
+        var data = [];
+        var key = "";
+        var shapes = ['thin-x', 'circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square'],
+            random = d3.random.normal();
+
+        for (i = 0; i < groups; i++) {
+
+            if(i == 0){
+                key = "2016";
+                year = year2016;
+            }else if(i == 1){
+                key = "2015";
+                year = year2015;
+            }else if(i == 2){
+                key = "2013";
+                year = year2013;
+            }else{
+                key = "2012";
+                year = year2012;
+            }
+
+            data.push({
+                key: key,
+                values: []
+            });
+
+            for (j = 0; j < points; j++) {
+                data[i].values.push({
+                    x: month[j],
+                    y: year[j],
+                    size: 6,
+                    //shape: shapes[j % shapes.length]
+                    shape: s
+                });
+            }
+        }
+
+        return data;
+    }
+
+</script>
+</body>
+</html>
