@@ -94,6 +94,13 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12" id="data2">
+                    <h2>Lie factor</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 
@@ -145,6 +152,32 @@
                              .attr("r", function (d) { return d.radius; })
                              .style("fill", "transparent")
                              .style("stroke", function(d) { return d.color; });
+    </script>
+
+    <script>
+        var data_circles = [
+         { "x_axis": 100, "y_axis": 200, "area": 50, "color" : "green" },
+         { "x_axis": 300, "y_axis": 200, "area": 100, "color" : "blue"}];
+
+var svgContainer = d3.select("div#data2")
+                     .append("svg")
+                     .attr("width", 400)
+                     .attr("height", 400);
+
+var circles = svgContainer.selectAll("circle")
+                           .data(data_circles)
+                           .enter()
+                           .append("circle");
+var size = 10;
+
+var scale = d3.scale.sqrt().domain([0,100]).range([0,100]);
+
+
+var circleAttributes = circles
+                             .attr("cx", function (d) { return d.x_axis; })
+                             .attr("cy", function (d) { return d.y_axis; })
+                             .attr("r", function (d) { return Math.sqrt(d.area/Math.PI) * size; })
+                             .style("fill", function(d) { return d.color; });
     </script>
 
 </body>
