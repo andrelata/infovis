@@ -1,0 +1,39 @@
+var pucara = [1, 0, 0, 0, -1, -1];
+var macabi = [ 1, 1, 0, 1, 1]; //le falta un partido
+var uPlata = [ 1, 1, 0, 1, 1, 0];
+var rAvella = [ -1, 1, 1, 1, -1, -1];
+var sCarlos = [ 1, 0, 1, 0, 1, 0];
+var quilmes = [ -1, 1, 0, 1, 0, 1];
+var italiano = [ -1, 1, 1, -1, 0, 1];
+var vicen = [ 1, 1, -1, -1, 1, -1];
+var sic = [ 0, -1, 0, 1, 0, 1];
+var hacoaj = [ -1, -1, 0, 1]; //le faltan 2 partidos
+var casi = [ 0, -1, 1, -1, -1 ];//le falta un partido
+var hindu = [ -1, 1, 0, -1, -1, 1 ];
+var mGrande = [ 1, -1, -1, 0, -1 ];//le falta 1 partido
+var staBar = [ 0, -1, -1, 0, 1, 1 ];
+var pinos = [ 0, -1, 0, -1, 0, -1];
+var sAngela = [ -1, -1, -1, -1, -1];	//le falta 1 partido
+
+
+    <p>
+        data: <span class="rAvella">Loading..</span>
+    </p>
+
+
+var poSpucara = [2, 4, 7, 8, 9];
+var poSmacabi = [3, 2, 1, 1, 2 ];
+var poSuPlata = [5, 3, 2, 2, 1 ];
+var poSrAvella = [15, 10, 6, 3, 5 ];
+var poSsCarlos = [4, 5, 3, 4, 3 ];
+var poSquilmes = [12, 8, 9, 5, 6 ];
+var poSitaliano = [14, 9, 5, 6, 7 ];
+var poSvicen = [1, 1, 4, 7, 4];
+var poSsic = [9, 13, 13, 9, 8];
+var poShacoaj = [13, 15, 15, 10, 10 ]; 
+var poScasi = [10, 14, 10, 11, 12 ];
+var poShindu = [11, 7, 8, 12, 11 ]; 
+var poSmGrande = [6, 6, 11, 13, 13 ];
+var poSstaBar = [8, 12, 14, 14, 15];
+var poSpinos = [7, 11, 12, 15, 14];
+var poSsAngela = [16, 16, 16, 16, 16];

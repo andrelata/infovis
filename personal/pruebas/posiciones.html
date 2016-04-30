@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+    <script src="build/nv.d3.js"></script>
+
+    <style>
+        text {
+            font: 12px sans-serif;
+        }
+        svg {
+            display: block;
+        }
+        html, body, #chart1, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .dashed {
+            stroke-dasharray: 5,5;
+        }
+    </style>
+</head>
+<body class='with-3d-shadow with-transitions'>
+
+	<div id="chart1"></div>
+
+    <script>
+
+        var chart;
+
+        nv.addGraph(function() {
+            chart = nv.models.lineChart()
+                .options({
+                    transitionDuration: 300,
+                    useInteractiveGuideline: true
+                })
+            ;
+
+            chart.width(700);
+
+            chart.xAxis
+                .axisLabel("Fecha")
+                .staggerLabels(true)
+            ;
+
+            chart.yAxis
+                .axisLabel('Posicion')
+            ;   
+
+            data = posiciones();
+
+            d3.select('#chart1').append('svg')
+                .datum(data)
+                .call(chart);
+
+            nv.utils.windowResize(chart.update);
+
+            return chart;
+        });
+
+        function posiciones(){
+
+            var resp = [];
+
+            var pucara = [];
+            var macabi = [];
+            var uPlata = [];
+            var rAvella = [];
+            var sCarlos = [];
+            var quilmes = [];
+            var italiano = [];
+            var vicen = [];
+            var sic = [];
+            var hacoaj = []; 
+            var casi = [];
+            var hindu = []; 
+            var mGrande = [];
+            var staBar = [];
+            var pinos = [];
+            var sAngela = [];
+
+            var poSpucara = [2, 4, 7, 8, 9];
+            var poSmacabi = [3, 2, 1, 1, 2 ];
+            var poSuPlata = [5, 3, 2, 2, 1 ];
+            var poSrAvella = [15, 10, 6, 3, 5 ];
+            var poSsCarlos = [4, 5, 3, 4, 3 ];
+            var poSquilmes = [12, 8, 9, 5, 6 ];
+            var poSitaliano = [14, 9, 5, 6, 7 ];
+            var poSvicen = [1, 1, 4, 7, 4];
+            var poSsic = [9, 13, 13, 9, 8];
+            var poShacoaj = [13, 15, 15, 10, 10 ]; 
+            var poScasi = [10, 14, 10, 11, 12 ];
+            var poShindu = [11, 7, 8, 12, 11 ]; 
+            var poSmGrande = [6, 6, 11, 13, 13 ];
+            var poSstaBar = [8, 12, 14, 14, 15];
+            var poSpinos = [7, 11, 12, 15, 14];
+            var poSsAngela = [16, 16, 16, 16, 16];
+
+            var equipos = [ pucara, macabi, uPlata, rAvella,
+                            sCarlos, quilmes, italiano, vicen,
+                            sic, hacoaj, casi, hindu,
+                            mGrande, staBar, pinos, sAngela];
+
+            var names = [ "pucara-B", "macabi", "uPlata", "reg-Avellaneda",
+                            "san-Carlos", "quilmes", "italiano", "vicentinos",
+                            "sic", "hacoaj", "casi", "hindu",
+                            "m.Grande", "santa-Barbara", "los-pinos", "santa-Angela"];
+
+            for (var i = 0; i < 5; i++) {
+                pucara.push({x: i+1, y: poSpucara[i]});
+                macabi.push({x: i+1, y: poSmacabi[i]});
+                uPlata.push({x: i+1, y: poSuPlata[i]});
+                rAvella.push({x: i+1, y: poSrAvella[i]});
+                sCarlos.push({x: i+1, y: poSsCarlos[i]});
+                quilmes.push({x: i+1, y: poSquilmes[i]});
+                italiano.push({x: i+1, y: poSitaliano[i]});
+                vicen.push({x: i+1, y: poSvicen[i]});
+                sic.push({x: i+1, y: poSsic[i]});
+                hacoaj.push({x: i+1, y: poShacoaj[i]});
+                casi.push({x: i+1, y: poScasi[i]});
+                hindu.push({x: i+1, y: poShindu[i]});
+                mGrande.push({x: i+1, y: poSmGrande[i]});
+                staBar.push({x: i+1, y: poSstaBar[i]});
+                pinos.push({x: i+1, y: poSpinos[i]});
+                sAngela.push({x: i+1, y: poSsAngela[i]});
+            }
+
+            var width = 2;
+            var color = d3.scale.category20b();
+
+            for(var i = 0; i < 15; i++) {
+                resp.push({
+                    values: equipos[i],
+                    key: names[i],
+                    //strokeWidth: width,
+                    color: color(i)
+                });
+            }
+
+            return resp;
+
+        }
+
+
+    </script>
+</body>
+</html>

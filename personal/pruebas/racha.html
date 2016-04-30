@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+    "http://www.w3.org/TR/html4/strict.dtd">
+<head>
+
+    <script src="https://code.jquery.com/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="js/jquery.sparkline.min.js"></script>
+
+    <script type="text/javascript">
+    $(function() {
+
+        var pucara = [1, 0, 0, 0, -1, -1];
+        var macabi = [ 1, 1, 0, 1, 1]; //le falta un partido
+        var uPlata = [ 1, 1, 0, 1, 1, 0];
+        var rAvella = [ -1, 1, 1, 1, -1, -1];
+        var sCarlos = [ 1, 0, 1, 0, 1, 0];
+        var quilmes = [ -1, 1, 0, 1, 0, 1];
+        var italiano = [ -1, 1, 1, -1, 0, 1];
+        var vicen = [ 1, 1, -1, -1, 1, -1];
+        var sic = [ 0, -1, 0, 1, 0, 1];
+        var hacoaj = [ -1, -1, 0, 1]; //le faltan 2 partidos
+        var casi = [ 0, -1, 1, -1, -1 ];//le falta un partido
+        var hindu = [ -1, 1, 0, -1, -1, 1 ];
+        var mGrande = [ 1, -1, -1, 0, -1 ];//le falta 1 partido
+        var staBar = [ 0, -1, -1, 0, 1, 1 ];
+        var pinos = [ 0, -1, 0, -1, 0, -1];
+        var sAngela = [ -1, -1, -1, -1, -1];    //le falta 1 partido
+
+        var barW = 20;
+        var h = 25;
+
+        $(".pucara").sparkline(pucara, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".macabi").sparkline(macabi, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".uPlata").sparkline(uPlata, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".rAvella").sparkline(rAvella, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".sCarlos").sparkline(sCarlos, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".quilmes").sparkline(quilmes, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".italiano").sparkline(italiano, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".vicen").sparkline(vicen, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".sic").sparkline(sic, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".hacoaj").sparkline(hacoaj, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".casi").sparkline(casi, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".hindu").sparkline(hindu, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".mGrande").sparkline(mGrande, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".staBar").sparkline(staBar, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".pinos").sparkline(pinos, {
+            type: 'tristate', barWidth: barW, height: h});
+        $(".sAngela").sparkline(sAngela, {
+            type: 'tristate', barWidth: barW, height: h});
+    });
+    </script>
+</head>
+<body>
+
+    <p>
+        <b>PUCARA-B</b> <span class="pucara">Loading..</span>
+    </p>
+    <p>
+        MACABI <span class="macabi">Loading..</span>
+    </p>
+    <p>
+        U. LA PLATA-D <span class="uPlata">Loading..</span>
+    </p>
+    <p>
+        R. AVELLANEDA-B <span class="rAvella">Loading..</span>
+    </p>
+    <p>
+        SAN CARLOS-B <span class="sCarlos">Loading..</span>
+    </p>
+    <p>
+        QUILMES-B <span class="quilmes">Loading..</span>
+    </p>
+    <p>
+        ITALIANO-B <span class="italiano">Loading..</span>
+    </p>
+    <p>
+        VICENTINOS <span class="vicen">Loading..</span>
+    </p>
+    <p>
+        SIC-C <span class="sic">Loading..</span>
+    </p>
+    <p>
+        HACOAJ-B <span class="hacoaj">Loading..</span>
+    </p>
+    <p>
+        CASI-C <span class="casi">Loading..</span>
+    </p>
+    <p>
+        HINDU-B <span class="hindu">Loading..</span>
+    </p>
+    <p>
+        M. GRANDE-B <span class="mGrande">Loading..</span>
+    </p>   
+    <p>
+        S. BARBARA-C <span class="staBar">Loading..</span>
+    </p>   
+    <p>
+        LOS PINOS <span class="pinos">Loading..</span>
+    </p>     
+    <p>
+        SANTA ANGELA <span class="sAngela">Loading..</span>
+    </p>
+
+    <div id="pos"></div>
+</body>
+</html>
