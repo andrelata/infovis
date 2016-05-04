@@ -29,6 +29,8 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/kevinkraus92/cc5ac08b30c244e54e2c96bbe5fea110/raw/608ea6bc5564c9705a6b3c41281b5dddc84b8879/dc.css"/>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -104,6 +106,37 @@
             <!-- /.row -->
             <div class="row">
                 <!-- contenido  -->
+                <div class="col-lg-3 col-md-6">
+                    <div id="chart-ring-condicion">
+                        <h4>Goles segun localia</h4>
+                        <a class="reset" href="javascript:condicionRingChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div id="chart-row-year">
+                        <h4>Goles por año</h4>
+                        <a class="reset" href="javascript:yearRowChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <!-- contenido  -->
+                <div class="col-lg-6 col-md-6">
+                    <div id="chart-hist-month">
+                        <h4>Goles por mes</h4>
+                        <a class="reset" href="javascript:monthHistChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
         </div>
@@ -130,9 +163,135 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <!--D3 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
 
-    <script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/kevinkraus92/ccfc1f0fc79f8c4f21fb93fd836b3bb8/raw/25d3bf7c727efef76ffbf1d319ab3d40be070932/dc.js"></script>
+
+    <script type="text/javascript">
+
+        var condicionRingChart = dc.pieChart("#chart-ring-condicion"),
+            monthHistChart = dc.barChart("#chart-hist-month")
+            yearRowChart   = dc.rowChart("#chart-row-year");
+
+        var goalData = [
+             {"Condicion":"Local","Month":"Marzo","Year":2016,"Count":0,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"Marzo","Year":2016,"Count":0,"Div":"Primera"},
+             {"Condicion":"Local","Month":"Abril","Year":2016,"Count":2,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"Abril","Year":2016,"Count":3,"Div":"Primera"},
+             {"Condicion":"Local","Month":"Marzo","Year":2016,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"Marzo","Year":2016,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"Abril","Year":2016,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"Abril","Year":2016,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"Marzo","Year":2015,"Count":1,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"Marzo","Year":2015,"Count":1,"Div":"Primera"},
+             {"Condicion":"Local","Month":"Abril","Year":2015,"Count":0,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"Abril","Year":2015,"Count":1,"Div":"Primera"},
+             {"Condicion":"Local","Month":"mayo","Year":2015,"Count":1,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"mayo","Year":2015,"Count":4,"Div":"Primera"},
+             {"Condicion":"Local","Month":"junio","Year":2015,"Count":0,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"junio","Year":2015,"Count":2,"Div":"Primera"},
+             {"Condicion":"Local","Month":"julio","Year":2015,"Count":0,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"julio","Year":2015,"Count":2,"Div":"Primera"},
+             {"Condicion":"Local","Month":"agosto","Year":2015,"Count":2,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"agosto","Year":2015,"Count":0,"Div":"Primera"},
+             {"Condicion":"Local","Month":"septiembre","Year":2015,"Count":3,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"septiembre","Year":2015,"Count":1,"Div":"Primera"},
+             {"Condicion":"Local","Month":"octubre","Year":2015,"Count":1,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"octubre","Year":2015,"Count":1,"Div":"Primera"},
+             {"Condicion":"Local","Month":"noviembre","Year":2015,"Count":2,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"noviembre","Year":2015,"Count":0,"Div":"Primera"},
+             {"Condicion":"Local","Month":"Marzo","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"Marzo","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"Abril","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"Abril","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"mayo","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"mayo","Year":2015,"Count":1,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"junio","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"junio","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"julio","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"julio","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"agosto","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"agosto","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"septiembre","Year":2015,"Count":1,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"septiembre","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"octubre","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"octubre","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"noviembre","Year":2015,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"noviembre","Year":2015,"Count":1,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"Marzo","Year":2013,"Count":0,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"Marzo","Year":2013,"Count":0,"Div":"Primera"},
+             {"Condicion":"Local","Month":"Abril","Year":2013,"Count":3,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"Abril","Year":2013,"Count":4,"Div":"Primera"},
+             {"Condicion":"Local","Month":"mayo","Year":2013,"Count":4,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"mayo","Year":2013,"Count":3,"Div":"Primera"},
+             {"Condicion":"Local","Month":"junio","Year":2013,"Count":5,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"junio","Year":2013,"Count":2,"Div":"Primera"},
+             {"Condicion":"Local","Month":"junio","Year":2013,"Count":3,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"junio","Year":2013,"Count":2,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"julio","Year":2013,"Count":3,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"julio","Year":2013,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"agosto","Year":2013,"Count":1,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"agosto","Year":2013,"Count":2,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"septiembre","Year":2013,"Count":2,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"septiembre","Year":2013,"Count":1,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"octubre","Year":2013,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"octubre","Year":2013,"Count":3,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"noviembre","Year":2013,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Visitante","Month":"noviembre","Year":2013,"Count":0,"Div":"Intermedia"},
+             {"Condicion":"Local","Month":"Marzo","Year":2012,"Count":4,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"Marzo","Year":2012,"Count":3,"Div":"Primera"},
+             {"Condicion":"Local","Month":"Abril","Year":2012,"Count":4,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"Abril","Year":2012,"Count":4,"Div":"Primera"},
+             {"Condicion":"Local","Month":"mayo","Year":2012,"Count":3,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"mayo","Year":2012,"Count":5,"Div":"Primera"},
+             {"Condicion":"Local","Month":"junio","Year":2012,"Count":5,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"junio","Year":2012,"Count":4,"Div":"Primera"},
+             {"Condicion":"Local","Month":"julio","Year":2012,"Count":1,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"julio","Year":2012,"Count":2,"Div":"Primera"},
+             {"Condicion":"Local","Month":"agosto","Year":2012,"Count":2,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"agosto","Year":2012,"Count":0,"Div":"Primera"},
+             {"Condicion":"Local","Month":"septiembre","Year":2012,"Count":4,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"septiembre","Year":2012,"Count":10,"Div":"Primera"},
+             {"Condicion":"Local","Month":"octubre","Year":2012,"Count":3,"Div":"Primera"},
+             {"Condicion":"Visitante","Month":"octubre","Year":2012,"Count":0,"Div":"Primera"}
+            ];
+
+        var cf = crossfilter(goalData),
+                condicionDim = cf.dimension(function(d) {return d.Condicion;}),
+                GoalPerCondicion = condicionDim.group().reduceSum(function(d) {return +d.Count;}),
+
+                monthDim  = cf.dimension(function(d) {return d.Month;}),
+                GoalPerMonth    = monthDim.group().reduceSum(function(d) {return +d.Count;}),
+
+                yearDim  = cf.dimension(function(d) {return +d.Year;}), 
+                GoalPerYear = yearDim.group().reduceSum(function(d) {return +d.Count;})
+            ;
+
+        condicionRingChart
+            .width(200).height(200)
+            .dimension(condicionDim)
+            .ordinalColors(['#FF4D4D','#1E90FF'])
+            .group(GoalPerCondicion);
+
+        monthHistChart
+            .width(800).height(400)
+            .dimension(monthDim)
+            .group(GoalPerMonth)
+            .x(d3.scale.ordinal())
+            .xUnits(dc.units.ordinal)
+            .ordinalColors(d3.scale.category20b().range())
+            .elasticX(true)
+            .elasticY(true);
+
+        yearRowChart
+            .width(350).height(200)
+            .dimension(yearDim)
+            .group(GoalPerYear)
+            .ordinalColors(d3.scale.category20().range())
+            .elasticX(true);
+
+        dc.renderAll();
       
     </script>
 
