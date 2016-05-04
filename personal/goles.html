@@ -114,7 +114,7 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div id="chart-row-year">
                         <h4>Goles por año</h4>
                         <a class="reset" href="javascript:yearRowChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
@@ -123,7 +123,12 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    
+                    <h4>Equipo</h4>
+                    <div id="chart-ring-div">
+                        <a class="reset" href="javascript:divRingChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
             </div>
             <!-- /.row -->
@@ -171,8 +176,10 @@
     <script type="text/javascript">
 
         var condicionRingChart = dc.pieChart("#chart-ring-condicion"),
-            monthHistChart = dc.barChart("#chart-hist-month")
-            yearRowChart   = dc.rowChart("#chart-row-year");
+            monthHistChart = dc.barChart("#chart-hist-month"),
+            yearRowChart   = dc.rowChart("#chart-row-year"),
+            divRingChart = dc.pieChart("#chart-ring-div")
+            ;
 
         var goalData = [
              {"Condicion":"Local","Month":"Marzo","Year":2016,"Count":0,"Div":"Primera"},
@@ -261,11 +268,16 @@
                 condicionDim = cf.dimension(function(d) {return d.Condicion;}),
                 GoalPerCondicion = condicionDim.group().reduceSum(function(d) {return +d.Count;}),
 
+                divDim = cf.dimension(function(d) {return d.Div;}),
+                GoalPerDiv = divDim.group().reduceSum(function(d) {return +d.Count;}),
+
                 monthDim  = cf.dimension(function(d) {return d.Month;}),
                 GoalPerMonth    = monthDim.group().reduceSum(function(d) {return +d.Count;}),
 
                 yearDim  = cf.dimension(function(d) {return +d.Year;}), 
                 GoalPerYear = yearDim.group().reduceSum(function(d) {return +d.Count;})
+
+
             ;
 
         condicionRingChart
@@ -273,6 +285,12 @@
             .dimension(condicionDim)
             .ordinalColors(['#FF4D4D','#1E90FF'])
             .group(GoalPerCondicion);
+
+        divRingChart
+            .width(200).height(200)
+            .dimension(divDim)
+            .ordinalColors(['#FF4D4D','#1E90FF'])
+            .group(GoalPerDiv);
 
         monthHistChart
             .width(800).height(400)
