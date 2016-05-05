@@ -161,9 +161,15 @@
                         </p>
                 </div>
                 <div class="col-lg-8 col-md-6">
+
                 </div>
             </div>
             <!-- /.row -->
+            <div class="row">
+                <div id="chart1" class='with-3d-shadow with-transitions'>
+                    <svg style="height: 500px;"></svg>
+                </div>
+            </div>
         </div>
         <!-- /#page-wrapper -->
 
@@ -250,6 +256,168 @@
             type: 'tristate', barWidth: barW, height: h});
     });
     </script>
+
+    <link href="../censo/build/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="../censo/build/nv.d3.js"></script>
+    <script src="../censo/lib/stream_layers.js"></script>
+
+<script>
+
+    var posiciones = [
+        {'values': [
+             {'Equipos':'PUCARA-B','Puntos':3},
+             {'Equipos':'MACABI','Puntos':3},
+             {'Equipos':'U. LA PLATA-D','Puntos':3},
+             {'Equipos':'R. AVELLANEDA-B','Puntos':0},
+             {'Equipos':'SAN CARLOS-B','Puntos':3},
+             {'Equipos':'QUILMES-B','Puntos':0},
+             {'Equipos':'ITALIANO-B','Puntos':0},
+             {'Equipos':'VICENTINOS','Puntos':3},
+             {'Equipos':'SIC-C','Puntos':1},
+             {'Equipos':'HACOAJ-B ','Puntos':0},
+             {'Equipos':'CASI-C','Puntos':1},
+             {'Equipos':'HINDU-B','Puntos':0},
+             {'Equipos':'M. GRANDE-B','Puntos':3},
+             {'Equipos':'S. BARBARA-C ','Puntos':1},
+             {'Equipos':'LOS PINOS','Puntos':1},
+             {'Equipos':'SANTA ANGELA','Puntos':0}], 
+            'key': 'Fecha 1'
+    },
+         {'values': [
+             {'Equipos':'PUCARA-B','Puntos':1},
+             {'Equipos':'MACABI','Puntos':3},
+             {'Equipos':'U. LA PLATA-D','Puntos':3},
+             {'Equipos':'R. AVELLANEDA-B','Puntos':0},
+             {'Equipos':'SAN CARLOS-B','Puntos':1},
+             {'Equipos':'QUILMES-B','Puntos':3},
+             {'Equipos':'ITALIANO-B','Puntos':3},
+             {'Equipos':'VICENTINOS','Puntos':3},
+             {'Equipos':'SIC-C','Puntos':0},
+             {'Equipos':'HACOAJ-B ','Puntos':0},
+             {'Equipos':'CASI-C','Puntos':0},
+             {'Equipos':'HINDU-B','Puntos':3},
+             {'Equipos':'M. GRANDE-B','Puntos':0},
+             {'Equipos':'S. BARBARA-C ','Puntos':0},
+             {'Equipos':'LOS PINOS','Puntos':0},
+             {'Equipos':'SANTA ANGELA','Puntos':0}
+            ], 'key': 'Fecha 2'},
+            {
+        'values': [
+             {'Equipos':'PUCARA-B','Puntos':1},
+             {'Equipos':'MACABI','Puntos':1},
+             {'Equipos':'U. LA PLATA-D','Puntos':1},
+             {'Equipos':'R. AVELLANEDA-B','Puntos':3},
+             {'Equipos':'SAN CARLOS-B','Puntos':3},
+             {'Equipos':'QUILMES-B','Puntos':1},
+             {'Equipos':'ITALIANO-B','Puntos':3},
+             {'Equipos':'VICENTINOS','Puntos':0},
+             {'Equipos':'SIC-C','Puntos':1},
+             {'Equipos':'HACOAJ-B ','Puntos':1},
+             {'Equipos':'CASI-C','Puntos':3},
+             {'Equipos':'HINDU-B','Puntos':1},
+             {'Equipos':'M. GRANDE-B','Puntos':0},
+             {'Equipos':'S. BARBARA-C ','Puntos':0},
+             {'Equipos':'LOS PINOS','Puntos':1},
+             {'Equipos':'SANTA ANGELA','Puntos':0}
+        ],
+        'key': 'Fecha 3'
+        },
+    {
+        'values': [
+             {'Equipos':'PUCARA-B','Puntos':1},
+             {'Equipos':'MACABI','Puntos':3},
+             {'Equipos':'U. LA PLATA-D','Puntos':3},
+             {'Equipos':'R. AVELLANEDA-B','Puntos':3},
+             {'Equipos':'SAN CARLOS-B','Puntos':1},
+             {'Equipos':'QUILMES-B','Puntos':3},
+             {'Equipos':'ITALIANO-B','Puntos':0},
+             {'Equipos':'VICENTINOS','Puntos':0},
+             {'Equipos':'SIC-C','Puntos':3},
+             {'Equipos':'HACOAJ-B ','Puntos':3},
+             {'Equipos':'CASI-C','Puntos':0},
+             {'Equipos':'HINDU-B','Puntos':0},
+             {'Equipos':'M. GRANDE-B','Puntos':1},
+             {'Equipos':'S. BARBARA-C ','Puntos':1},
+             {'Equipos':'LOS PINOS','Puntos':0},
+             {'Equipos':'SANTA ANGELA','Puntos':0}
+        ],
+        'key': 'Fecha 4'
+    },
+    {
+        'values': [
+             {'Equipos':'PUCARA-B','Puntos':0},
+             {'Equipos':'MACABI','Puntos':3},
+             {'Equipos':'U. LA PLATA-D','Puntos':3},
+             {'Equipos':'R. AVELLANEDA-B','Puntos':0},
+             {'Equipos':'SAN CARLOS-B','Puntos':3},
+             {'Equipos':'QUILMES-B','Puntos':1},
+             {'Equipos':'ITALIANO-B','Puntos':1},
+             {'Equipos':'VICENTINOS','Puntos':3},
+             {'Equipos':'SIC-C','Puntos':1},
+             {'Equipos':'HACOAJ-B ','Puntos':0},
+             {'Equipos':'CASI-C','Puntos':0},
+             {'Equipos':'HINDU-B','Puntos':0},
+             {'Equipos':'M. GRANDE-B','Puntos':0},
+             {'Equipos':'S. BARBARA-C ','Puntos':3},
+             {'Equipos':'LOS PINOS','Puntos':1},
+             {'Equipos':'SANTA ANGELA','Puntos':0}
+        ],
+        'key': 'Fecha 5'
+    },
+    {
+        'values': [
+             {'Equipos':'PUCARA-B','Puntos':0},
+             {'Equipos':'MACABI','Puntos':0},            
+             {'Equipos':'U. LA PLATA-D','Puntos':1},
+             {'Equipos':'R. AVELLANEDA-B','Puntos':0},
+             {'Equipos':'SAN CARLOS-B','Puntos':1},
+             {'Equipos':'QUILMES-B','Puntos':3},
+             {'Equipos':'ITALIANO-B','Puntos':3},
+             {'Equipos':'VICENTINOS','Puntos':0},
+             {'Equipos':'SIC-C','Puntos':1},
+             {'Equipos':'HACOAJ-B ','Puntos':0},
+             {'Equipos':'CASI-C','Puntos':0},
+             {'Equipos':'HINDU-B','Puntos':3},
+             {'Equipos':'M. GRANDE-B','Puntos':0},
+             {'Equipos':'S. BARBARA-C ','Puntos':3},
+             {'Equipos':'LOS PINOS','Puntos':0},
+             {'Equipos':'SANTA ANGELA','Puntos':0}
+        ],
+        'key': 'Fecha 6'
+    }    
+
+           
+
+    ];
+
+
+    var chart;
+    nv.addGraph(function() {
+        chart = nv.models.multiBarHorizontalChart()
+            .x(function(d) { return d.Equipos})
+            .y(function(d) { return d.Puntos})
+            .barColor(d3.scale.category20().range())
+            .duration(250)
+        .margin({left: 110, right: 10})
+            .stacked(true);
+
+        chart.showControls(false);
+
+        chart.yAxis.tickFormat(d3.format(''));
+
+        chart.yAxis.axisLabel('Fechas');
+        //chart.xAxis.axisLabel('Equipos').axisLabelDistance(70);
+
+
+        d3.select('#chart1 svg')
+            .datum(posiciones)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+</script>
 
 </body>
 
