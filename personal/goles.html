@@ -104,6 +104,12 @@
                 <h2>Analisis de goles</h2>
             </div>
             <!-- /.row -->
+            <div class="row" >
+                <div class="col-lg-3 col-md-6" id="goal-returns" style="border-style: solid; font-size:16px;"> 
+                    Total de goles: 
+                </div>
+            </div>
+            <!-- /.row -->
             <div class="row">
                 <!-- contenido  -->
                 <div class="col-lg-3 col-md-6">
@@ -180,6 +186,8 @@
             yearRowChart   = dc.rowChart("#chart-row-year"),
             divRingChart = dc.pieChart("#chart-ring-div")
             ;
+
+        var goal_number = dc.numberDisplay("#goal-returns");
 
         var goalData = [
              {"Condicion":"Local","Month":"Marzo","Year":2016,"Count":0,"Div":"Primera"},
@@ -279,6 +287,31 @@
 
 
             ;
+
+        var all = cf.groupAll();
+        var average_returns_group = all.reduce(
+            /* callback for when data is added to the current filter results */
+            function (p, v) {
+                p.count += v.Count;
+                return p;
+            },
+            /* callback for when data is removed from the current filter results */
+            function (p, v) {
+                p.count -= v.Count;
+                return p;
+            },
+            /* initialize p */
+            function () {
+                return {
+                    count: 0
+                };
+            }
+        );
+
+        goal_number
+            .group(average_returns_group)
+            .valueAccessor(function (p) {return p.count;})
+            .formatNumber(d3.format(""));
 
         condicionRingChart
             .width(200).height(200)
